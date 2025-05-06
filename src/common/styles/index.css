@@ -1,1 +1,6 @@
 @import 'tailwindcss';
+.test {
+  @apply bg-blue-500;
+}
+
+@import '../../components/inputs/InputTextPassword.css';
