@@ -1,0 +1,3 @@
+- Faire le formulaire d'inscription
+- Faire la connexion
+- Faire le style
