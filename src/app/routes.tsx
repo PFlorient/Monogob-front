@@ -1,7 +1,7 @@
 // src/app/routes.tsx
 import { RouteObject } from 'react-router';
 import App from './App';
-import SignUpPage from '../pages/SignUp';
+import AuthPage from '../pages/Auth';
 
 export const routes: RouteObject[] = [
   {
@@ -9,7 +9,7 @@ export const routes: RouteObject[] = [
     element: <App />, // layout principal (avec Outlet)
     children: [
       // { index: true, element: <HomePage /> },
-      { path: 'signup', element: <SignUpPage /> },
+      { path: 'signup', element: <AuthPage /> },
       { path: '*', element: <h1>404 - Not Found</h1> },
     ],
   },

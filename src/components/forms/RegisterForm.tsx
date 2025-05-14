@@ -71,8 +71,8 @@ const RegisterForm = (props: RegisterFormProps) => {
     <form onSubmit={handleSubmit} className="grid grid-cols-2 gap-4">
       <TextField
         id="name"
-        label="Name"
-        name="name"
+        label="Username"
+        name="username"
         onChange={handleFormChange}
         value={form.username}
         error={checkError('username')}
@@ -96,7 +96,6 @@ const RegisterForm = (props: RegisterFormProps) => {
         value={form.password}
         error={checkError('password')}
         helperText={checkError('password') ? error.password : ''}
-        multiline
       />
       <div className="col-span-2 flex justify-center">
         <Button variant="contained" type="submit">
