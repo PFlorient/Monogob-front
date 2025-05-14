@@ -9,7 +9,7 @@ interface RegisterFormProps {
 }
 
 const initialForm: registerFormData = {
-  name: '',
+  username: '',
   email: '',
   password: '',
 };
@@ -19,7 +19,7 @@ const RegisterForm = (props: RegisterFormProps) => {
   const [error, setError] = useState<registerFormData>(initialForm);
   const [submitted, setSubmitted] = useState<boolean>(false);
 
-  const passwordRegex = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d@#$%^&+=]{8,}$/;
+  const passwordRegex = /^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,}$/;
 
   const handleFormChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
@@ -27,12 +27,12 @@ const RegisterForm = (props: RegisterFormProps) => {
   };
   const validateForm = (form: registerFormData): registerFormData => {
     const errors: registerFormData = {
-      name: '',
+      username: '',
       email: '',
       password: '',
     };
-    if (form.name === '') {
-      errors.name = 'Name is required';
+    if (form.username === '') {
+      errors.username = 'username is required';
     }
 
     if (form.email === '') {
@@ -51,7 +51,7 @@ const RegisterForm = (props: RegisterFormProps) => {
     return errors;
   };
 
-  const checkError = (name: 'name' | 'email' | 'password') => {
+  const checkError = (name: 'username' | 'email' | 'password') => {
     return submitted && error[name] !== '';
   };
 
@@ -60,7 +60,7 @@ const RegisterForm = (props: RegisterFormProps) => {
     setSubmitted(true);
 
     const errors = validateForm(form);
-    if (errors.name || errors.email || errors.password) {
+    if (errors.username || errors.email || errors.password) {
       setError(errors);
       return;
     }
@@ -74,9 +74,9 @@ const RegisterForm = (props: RegisterFormProps) => {
         label="Name"
         name="name"
         onChange={handleFormChange}
-        value={form.name}
-        error={checkError('name')}
-        helperText={checkError('name') ? error.name : ''}
+        value={form.username}
+        error={checkError('username')}
+        helperText={checkError('username') ? error.username : ''}
       />
       <TextField
         id="email"
