@@ -6,7 +6,7 @@ export default function App() {
       <nav className="p-4 space-x-4">
         <Link to="/">Accueil</Link>
         <Link to="/signUp">S&apos;inscrire</Link>
-        <Link to="/dashboard">Dashboard</Link>
+        <Link to="/rooms">Liste des salles</Link>
       </nav>
       <main className="p-8">
         <Outlet />
