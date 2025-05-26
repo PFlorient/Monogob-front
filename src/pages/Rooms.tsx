@@ -49,10 +49,12 @@ const RoomsPage = () => {
       <TableContainer component={Paper}>
         <Table aria-label="list room">
           <TableHead>
-            <TableCell>Rooms uuid</TableCell>
-            <TableCell>Name</TableCell>
-            <TableCell>Number player</TableCell>
-            <TableCell>Created_at</TableCell>
+            <TableRow>
+              <TableCell>Rooms uuid</TableCell>
+              <TableCell>Name</TableCell>
+              <TableCell>Number player</TableCell>
+              <TableCell>Created_at</TableCell>
+            </TableRow>
           </TableHead>
           <TableBody>
             {listRooms.map((room) => (
