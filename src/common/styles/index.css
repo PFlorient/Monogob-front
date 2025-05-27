@@ -2,5 +2,11 @@
 
 @font-face {
   font-family: 'Fresh Olive';
-  src: url('../assets/fonts/fresh_olive/FreshOlive-Regular.ttf') format('truetype');
+  src: url('/fonts/fresh_olive/Fresh_Olive.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@theme {
+  --font-fresh-olive: 'Fresh Olive', sans-serif;
 }

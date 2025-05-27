@@ -1,4 +1,5 @@
 import { Outlet, Link } from 'react-router';
+import Navbar from '../components/Navbar';
 
 export default function App() {
   return (
@@ -8,6 +9,7 @@ export default function App() {
         <Link to="/signUp">S&apos;inscrire</Link>
         <Link to="/rooms">Liste des salles</Link>
       </nav>
+      <Navbar />
       <main className="p-8">
         <Outlet />
       </main>
