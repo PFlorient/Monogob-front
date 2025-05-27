@@ -1,3 +1,3 @@
-- Faire le formulaire d'inscription
-- Faire la connexion
 - Faire le style
+- faire une page de garde
+- garder la connexion au users_uuid
