@@ -1,1 +1,6 @@
 @import 'tailwindcss';
+
+@font-face {
+  font-family: 'Fresh Olive';
+  src: url('../assets/fonts/fresh_olive/FreshOlive-Regular.ttf') format('truetype');
+}

@@ -1,11 +1,10 @@
 module.exports = {
-  content: [
-    './index.html',
-    './src/**/*.{js,ts,jsx,tsx}', // ✅ important pour détecter les classes dynamiques
-    './src/**/*.{css}', // ✅ pour que Tailwind scanne aussi les .css si tu utilises @apply
-  ],
+  content: ['./index.html', './src/**/*.{js,ts,jsx,tsx}', './src/**/*.{css}'],
   theme: {
     extend: {},
+    fontFamily: {
+      freshOlive: ['Fresh Olive', 'cursive'],
+    },
   },
   plugins: [],
 };
