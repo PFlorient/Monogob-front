@@ -1,20 +1,29 @@
-import React from 'react';
 import { StoryFn, Meta } from '@storybook/react';
+import { MemoryRouter } from 'react-router';
 
-import Navbar from '../components/Navbar';
+import Navbar, { NavbarProps } from '../components/Navbar';
 
 export default {
   title: 'Components/Navbar',
   component: Navbar,
+  decorators: [
+    (Story) => (
+      <MemoryRouter initialEntries={['/']}>
+        <Story />
+      </MemoryRouter>
+    ),
+  ],
 } as Meta;
 
-const Template: StoryFn = () => <Navbar />;
+const Template: StoryFn<NavbarProps> = (args) => <Navbar {...args} />;
 
 export const Default = Template.bind({});
 Default.args = {
-  pages: [
-    { name: 'Home', href: '/' },
-    { name: 'Rooms', href: '/rooms' },
-    { name: 'About', href: '/about' },
-  ],
+  isConnected: false,
+};
+
+export const Connected = Template.bind({});
+Connected.args = {
+  isConnected: true,
+  username: 'John Doe',
 };
