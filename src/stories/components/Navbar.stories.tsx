@@ -1,7 +1,7 @@
 import { StoryFn, Meta } from '@storybook/react';
 import { MemoryRouter } from 'react-router';
 
-import Navbar, { NavbarProps } from '../components/Navbar';
+import Navbar, { NavbarProps } from '../../components/Navbar';
 
 export default {
   title: 'Components/Navbar',
@@ -18,12 +18,9 @@ export default {
 const Template: StoryFn<NavbarProps> = (args) => <Navbar {...args} />;
 
 export const Default = Template.bind({});
-Default.args = {
-  isConnected: false,
-};
+Default.args = {};
 
 export const Connected = Template.bind({});
 Connected.args = {
-  isConnected: true,
   username: 'John Doe',
 };

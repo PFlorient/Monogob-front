@@ -10,6 +10,7 @@ export async function callLoginApi(
     get().setUser({ ...response.data });
   } catch (error) {
     console.error(error);
+    throw error;
   }
 }
 

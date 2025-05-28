@@ -13,7 +13,7 @@ export type AuthStore = {
   user: User | null;
   setUser: (user: User) => void;
   clearUser: () => void;
-  callLoginApi: (credentials: { username: string; password: string }) => void;
+  callLoginApi: (credentials: { username: string; password: string }) => Promise<void>;
   logout: () => void;
 };
 

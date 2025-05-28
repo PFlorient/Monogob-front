@@ -1,10 +1,10 @@
 // src/app/routes.tsx
 import { RouteObject } from 'react-router';
-import App from './App';
 import AuthPage from '../pages/Auth';
 import RoomsPage from '../pages/Rooms';
 import { useRooms } from '../store/useRooms';
 import RoomPage from '../pages/Room';
+import Layout from '../components/layout/layout';
 
 const roomsLoader = async () => {
   useRooms.getState().callRoomsApi();
@@ -13,7 +13,7 @@ const roomsLoader = async () => {
 export const routes: RouteObject[] = [
   {
     path: '/',
-    element: <App />, // layout principal (avec Outlet)
+    element: <Layout />, // layout principal (avec Outlet)
     children: [
       // { index: true, element: <HomePage /> },
       { path: 'signup', element: <AuthPage /> },

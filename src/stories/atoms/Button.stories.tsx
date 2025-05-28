@@ -1,7 +1,7 @@
 import { StoryFn, Meta } from '@storybook/react';
 import { Button } from '@mui/material';
 export default {
-  title: 'Components/Button',
+  title: 'Atoms/Button',
   component: Button,
 } as Meta;
 

@@ -1,6 +1,5 @@
-// CustomModal.stories.jsx
-import React, { useState } from 'react';
-import CustomModal from '../components/CustomModal';
+import { useState } from 'react';
+import CustomModal from '../../components/modals/CustomModal';
 import { Button, Typography } from '@mui/material';
 
 export default {

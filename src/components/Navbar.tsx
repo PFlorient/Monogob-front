@@ -3,13 +3,12 @@ import React from 'react';
 import { Link } from 'react-router';
 
 export interface NavbarProps {
-  onConnectClick: () => void;
-  isConnected: boolean;
   username?: string;
+  onConnectClick: () => void;
   onDisconnectClick: () => void;
 }
 
-const Navbar = ({ ...props }: NavbarProps) => {
+const Navbar = ({ username, onConnectClick, onDisconnectClick }: NavbarProps) => {
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
   const openMenu = Boolean(anchorEl);
   const handleClickMenu = (event: React.MouseEvent<HTMLElement>) => {
@@ -17,10 +16,13 @@ const Navbar = ({ ...props }: NavbarProps) => {
   };
   const handleCloseMenu = () => {
     setAnchorEl(null);
-    props.onDisconnectClick?.();
+  };
+  const disconnectClick = () => {
+    setAnchorEl(null);
+    onDisconnectClick?.();
   };
   return (
-    <nav className="flex font-fresh-olive text-lg w-full justify-between items-center">
+    <nav className="flex font-fresh-olive text-lg w-full justify-between items-center py-2 absolute top-0 left-0">
       <div>
         <Link to="/">€ Gobcass</Link>
       </div>
@@ -30,7 +32,7 @@ const Navbar = ({ ...props }: NavbarProps) => {
         </div>
       </div>
       <div>
-        {props.isConnected ? (
+        {username ? (
           <React.Fragment>
             <Button
               onClick={handleClickMenu}
@@ -40,15 +42,15 @@ const Navbar = ({ ...props }: NavbarProps) => {
               aria-expanded={openMenu ? 'true' : undefined}
               sx={{ textTransform: 'none', fontSize: 'inherit' }}
             >
-              {props.username}
+              {username}
             </Button>
             <Menu id="account-menu" anchorEl={anchorEl} open={openMenu} onClose={handleCloseMenu}>
-              <MenuItem onClick={handleCloseMenu}>Deconnexion</MenuItem>
+              <MenuItem onClick={disconnectClick}>Deconnexion</MenuItem>
             </Menu>
           </React.Fragment>
         ) : (
           <Button
-            onClick={props.onConnectClick}
+            onClick={onConnectClick}
             variant="bordered"
             sx={{ textTransform: 'none', fontSize: 'inherit' }}
           >

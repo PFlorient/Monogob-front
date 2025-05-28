@@ -3,8 +3,9 @@ import { loginFormData } from '../../common/types/login.form';
 import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
 
-interface LoginFormProps {
+export interface LoginFormProps {
   onSubmit: (data: loginFormData) => void;
+  errorRequest?: string;
 }
 
 const initialForm: loginFormData = {
@@ -12,7 +13,7 @@ const initialForm: loginFormData = {
   password: '',
 };
 
-const LoginForm = (props: LoginFormProps) => {
+const LoginForm = ({ onSubmit, errorRequest }: LoginFormProps) => {
   const [form, setForm] = useState<loginFormData>(initialForm);
   const [error, setError] = useState<loginFormData>(initialForm);
   const [submitted, setSubmitted] = useState<boolean>(false);
@@ -50,11 +51,11 @@ const LoginForm = (props: LoginFormProps) => {
       setError(errors);
       return;
     }
-    props.onSubmit(form);
+    onSubmit(form);
   };
 
   return (
-    <form onSubmit={handleSubmit}>
+    <form onSubmit={handleSubmit} className="flex flex-col gap-4">
       <TextField
         label="Username"
         name="username"
@@ -70,7 +71,12 @@ const LoginForm = (props: LoginFormProps) => {
         error={checkError('password')}
         helperText={checkError('password') ? error.password : ''}
       />
-      <Button type="submit">Login</Button>
+      {errorRequest && <p className="text-red-500">{errorRequest}</p>}
+      <div className="flex justify-center">
+        <Button type="submit" variant="contained">
+          Login
+        </Button>
+      </div>
     </form>
   );
 };
