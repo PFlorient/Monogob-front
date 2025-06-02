@@ -10,8 +10,28 @@ const themeOptions: ThemeOptions = {
       main: '#d9c50e',
     },
   },
-  shape: {
-    borderRadius: 50,
+  typography: {
+    fontFamily: 'inherit',
+  },
+  components: {
+    MuiButton: {
+      styleOverrides: {
+        root: {
+          borderRadius: 50,
+        },
+      },
+      variants: [
+        {
+          props: { variant: 'bordered' },
+          style: {
+            border: '1px solid #26ba27',
+            '&:hover': {
+              backgroundColor: '#8cdb8d',
+            },
+          },
+        },
+      ],
+    },
   },
 };
 

@@ -6,6 +6,6 @@ type loginResponse = {
   username: string;
   email: string;
 };
-export const loginUser = async (data: loginFormData) => {
-  return await axiosApi.post<loginResponse>('/user/login', data);
+export const loginUser = (data: loginFormData) => {
+  return axiosApi.post<loginResponse>('/user/login', data);
 };

@@ -9,7 +9,7 @@ interface CreateRoomFormProps {
 const initialForm: CreateRoomData = {
   name: '',
 };
-const CreateRoomForm = (props: CreateRoomFormProps) => {
+const CreateRoomForm = ({ onSubmit }: CreateRoomFormProps) => {
   const [form, setForm] = useState<CreateRoomData>(initialForm);
   const [error, setError] = useState<CreateRoomData>(initialForm);
   const [submitted, setSubmitted] = useState<boolean>(false);
@@ -36,7 +36,7 @@ const CreateRoomForm = (props: CreateRoomFormProps) => {
       setError(errors);
       return;
     }
-    props.onSubmit(form);
+    onSubmit(form);
   };
 
   return (

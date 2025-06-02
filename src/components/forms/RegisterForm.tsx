@@ -4,8 +4,9 @@ import { registerFormData } from '../../common/types/register.form';
 import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
 
-interface RegisterFormProps {
+export interface RegisterFormProps {
   onSubmit: (data: registerFormData) => void;
+  errorRequest?: string;
 }
 
 const initialForm: registerFormData = {
@@ -14,7 +15,7 @@ const initialForm: registerFormData = {
   password: '',
 };
 
-const RegisterForm = (props: RegisterFormProps) => {
+const RegisterForm = ({ onSubmit, errorRequest }: RegisterFormProps) => {
   const [form, setForm] = useState<registerFormData>(initialForm);
   const [error, setError] = useState<registerFormData>(initialForm);
   const [submitted, setSubmitted] = useState<boolean>(false);
@@ -64,7 +65,7 @@ const RegisterForm = (props: RegisterFormProps) => {
       setError(errors);
       return;
     }
-    props.onSubmit(form);
+    onSubmit(form);
   };
 
   return (
@@ -96,7 +97,9 @@ const RegisterForm = (props: RegisterFormProps) => {
         value={form.password}
         error={checkError('password')}
         helperText={checkError('password') ? error.password : ''}
+        className="col-span-2"
       />
+      {errorRequest && <p className="col-span-2 text-red-500">{errorRequest}</p>}
       <div className="col-span-2 flex justify-center">
         <Button variant="contained" type="submit">
           Submit
