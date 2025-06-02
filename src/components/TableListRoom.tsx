@@ -34,6 +34,11 @@ const TableListRoom = ({ listRooms }: TableListRoomProps) => {
                 <TableCell>{room.created_at}</TableCell>
               </TableRow>
             ))}
+            {!listRooms.length && (
+              <TableRow>
+                <TableCell colSpan={3}>No room found</TableCell>
+              </TableRow>
+            )}
           </TableBody>
         </Table>
       </TableContainer>

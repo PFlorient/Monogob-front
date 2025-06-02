@@ -13,7 +13,6 @@ export const getRoom = async (uuid: string) => {
 };
 
 export const createRoom = async (data: CreateRoomData) => {
-  console.log(data.name);
   const response = await axiosApi.post<Room>('/room/create', data);
   return response.data;
 };

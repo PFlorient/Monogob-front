@@ -22,7 +22,7 @@ const Navbar = ({ username, onConnectClick, onDisconnectClick }: NavbarProps) =>
     onDisconnectClick?.();
   };
   return (
-    <nav className="flex font-fresh-olive text-lg w-full justify-between items-center py-2 absolute top-0 left-0">
+    <nav className="flex font-fresh-olive text-lg w-full justify-between items-center py-2 px-4">
       <div>
         <Link to="/">€ Gobcass</Link>
       </div>

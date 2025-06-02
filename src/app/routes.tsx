@@ -5,6 +5,7 @@ import RoomsPage from '../pages/Rooms';
 import { useRooms } from '../store/useRooms';
 import RoomPage from '../pages/Room';
 import Layout from '../components/layout/layout';
+import HomePage from '../pages/Home';
 
 const roomsLoader = async () => {
   useRooms.getState().callRoomsApi();
@@ -15,7 +16,7 @@ export const routes: RouteObject[] = [
     path: '/',
     element: <Layout />, // layout principal (avec Outlet)
     children: [
-      // { index: true, element: <HomePage /> },
+      { index: true, element: <HomePage />, loader: roomsLoader },
       { path: 'signup', element: <AuthPage /> },
       { path: 'rooms', element: <RoomsPage />, loader: roomsLoader },
       { path: 'room/:uuid', element: <RoomPage /> },
