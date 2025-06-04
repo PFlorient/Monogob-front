@@ -8,13 +8,15 @@ import {
   TableRow,
 } from '@mui/material';
 import Room from '../common/types/rooms';
-import { Navigate } from 'react-router';
+import { useNavigate } from 'react-router';
 
 export interface TableListRoomProps {
   listRooms: Room[];
+  isConnected: boolean;
 }
 
-const TableListRoom = ({ listRooms }: TableListRoomProps) => {
+const TableListRoom = ({ listRooms, isConnected }: TableListRoomProps) => {
+  const navigate = useNavigate();
   return (
     <div>
       <TableContainer component={Paper}>
@@ -28,7 +30,10 @@ const TableListRoom = ({ listRooms }: TableListRoomProps) => {
           </TableHead>
           <TableBody>
             {listRooms.map((room) => (
-              <TableRow key={room.uuid} onClick={() => Navigate({ to: `/room/${room.uuid}` })}>
+              <TableRow
+                key={room.uuid}
+                onClick={() => isConnected && navigate(`/room/${room.uuid}`)}
+              >
                 <TableCell>{room.name}</TableCell>
                 <TableCell>{room.users_uuid.length}</TableCell>
                 <TableCell>{room.created_at}</TableCell>

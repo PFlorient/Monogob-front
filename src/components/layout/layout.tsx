@@ -8,23 +8,37 @@ import { loginFormData } from '../../common/types/login.form';
 import { registerFormData } from '../../common/types/register.form';
 import axios from 'axios';
 import { createContext } from 'react';
+import ErrorModal from '../modals/ErrorModal';
+import RouteErrorHandler from './RouteErrorHandler';
 
-const LayoutContext = createContext({
-  openAuthModal: () => {},
+type LayoutContextType = {
+  openAuthenticationModal: () => void;
+  openErrorApiModal: (errorMessage: string) => void;
+};
+
+const LayoutContext = createContext<LayoutContextType>({
+  openAuthenticationModal: () => {},
+  openErrorApiModal: () => {},
 });
 
 const Layout = () => {
-  const [openModal, setOpenModal] = useState(false);
+  const [openAuthModal, setOpenAuthModal] = useState(false);
+  const [openErrorModal, setOpenErrorModal] = useState(false);
+  const [errorMessage, setErrorMessage] = useState<string>('');
   const [errorLoginRequest, setErrorLoginRequest] = useState<string>('');
   const [errorRegisterRequest, setErrorRegisterRequest] = useState<string>('');
   const username = useAuth((state) => state.user?.username);
 
-  const openAuthModal = () => setOpenModal(true);
+  const openAuthenticationModal = () => setOpenAuthModal(true);
+  const openErrorApiModal = (errorMessage: string) => {
+    setOpenErrorModal(true);
+    setErrorMessage(errorMessage);
+  };
 
   const loginSubmit = async (data: loginFormData) => {
     try {
       await useAuth.getState().callLoginApi(data);
-      setOpenModal(false);
+      setOpenAuthModal(false);
     } catch (error) {
       if (axios.isAxiosError(error)) {
         setErrorLoginRequest(error.response?.data.message);
@@ -35,7 +49,7 @@ const Layout = () => {
   const registerSubmit = async (data: registerFormData) => {
     try {
       await registerUser(data);
-      setOpenModal(false);
+      setOpenAuthModal(false);
     } catch (error) {
       if (axios.isAxiosError(error)) {
         setErrorRegisterRequest(error.response?.data.message);
@@ -48,27 +62,34 @@ const Layout = () => {
   };
 
   return (
-    <LayoutContext.Provider value={{ openAuthModal }}>
+    <LayoutContext.Provider value={{ openAuthenticationModal, openErrorApiModal }}>
       <React.Fragment>
         <header className="absolute top-0 left-0 right-0">
           <Navbar
-            onConnectClick={openAuthModal}
+            onConnectClick={openAuthenticationModal}
             onDisconnectClick={onDisconnectClick}
             username={username}
           />
         </header>
         <main>
           <Outlet />
+          <RouteErrorHandler />
         </main>
-        <AuthModal
-          open={openModal}
-          onClose={() => setOpenModal(false)}
-          loginSubmit={loginSubmit}
-          registerSubmit={registerSubmit}
-          errorLoginRequest={errorLoginRequest}
-          errorRegisterRequest={errorRegisterRequest}
-        />
-        <footer></footer>
+        <footer>
+          <AuthModal
+            open={openAuthModal}
+            onClose={() => setOpenAuthModal(false)}
+            loginSubmit={loginSubmit}
+            registerSubmit={registerSubmit}
+            errorLoginRequest={errorLoginRequest}
+            errorRegisterRequest={errorRegisterRequest}
+          />
+          <ErrorModal
+            open={openErrorModal}
+            onClose={() => setOpenErrorModal(false)}
+            message={errorMessage}
+          />
+        </footer>
       </React.Fragment>
     </LayoutContext.Provider>
   );

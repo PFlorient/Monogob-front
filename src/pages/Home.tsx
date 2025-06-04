@@ -13,7 +13,7 @@ const HomePage = () => {
   const [fieldNewRoom, setfieldNewRoom] = useState(false);
   const listRooms = useRooms((state) => state.rooms);
   const user = useAuth((state) => state.user);
-  const { openAuthModal } = useContext(LayoutContext);
+  const { openAuthenticationModal } = useContext(LayoutContext);
   const reloadRooms = () => {
     useRooms.getState().callRoomsApi();
   };
@@ -27,7 +27,7 @@ const HomePage = () => {
       setfieldNewRoom((prev) => !prev);
     } else {
       console.log('user not connected');
-      openAuthModal();
+      openAuthenticationModal();
     }
   };
   return (
@@ -37,7 +37,7 @@ const HomePage = () => {
     >
       <div className="flex flex-col justify-center items-center">
         <h2 className="text-4xl font-bold text-black mb-4">Bienvenue au Gobcass !</h2>
-        <TableListRoom listRooms={listRooms} />
+        <TableListRoom listRooms={listRooms} isConnected={Boolean(user)} />
         <div className="flex justify-between w-full mt-2">
           <Button onClick={reloadRooms} variant="contained">
             refresh
