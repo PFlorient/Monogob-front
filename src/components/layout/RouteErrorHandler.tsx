@@ -11,7 +11,9 @@ export default function RouteErrorHandler() {
   useEffect(() => {
     if (error?.message) {
       openErrorApiModal(error.message);
-      navigate('/'); // redirection automatique
+    }
+    if (error?.status === 401) {
+      navigate('/');
     }
   }, [error, navigate, openErrorApiModal]);
 

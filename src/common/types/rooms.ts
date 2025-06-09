@@ -1,9 +1,12 @@
 type Room = {
   uuid: string;
   name: string;
-  admnistrator_uuid: string;
-  users_uuid: string[];
+  administrator_uuid: string;
+  users: LightUserInfo[];
   created_at: string;
 };
-
+type LightUserInfo = {
+  uuid: string;
+  username: string;
+};
 export default Room;

@@ -14,16 +14,22 @@ Default.args = {
     {
       uuid: 'uuid1',
       name: 'room1',
-      users_uuid: ['user1', 'user2'],
+      users: [
+        { uuid: 'user1', username: 'user1' },
+        { uuid: 'user2', username: 'user2' },
+      ],
       created_at: new Date().toISOString(),
-      admnistrator_uuid: '',
+      administrator_uuid: '',
     },
     {
       uuid: 'uuid2',
       name: 'room2',
-      users_uuid: ['user3', 'user4'],
+      users: [
+        { uuid: 'user1', username: 'user1' },
+        { uuid: 'user2', username: 'user2' },
+      ],
       created_at: new Date().toISOString(),
-      admnistrator_uuid: '',
+      administrator_uuid: '',
     },
   ],
 };

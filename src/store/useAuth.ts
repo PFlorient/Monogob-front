@@ -5,6 +5,7 @@ import { callLoginApi, logout } from './actions/authActions';
 
 type User = {
   username: string;
+  uuid: string;
   email: string;
   token: string;
 };

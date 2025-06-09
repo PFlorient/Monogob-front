@@ -35,7 +35,7 @@ const TableListRoom = ({ listRooms, isConnected }: TableListRoomProps) => {
                 onClick={() => isConnected && navigate(`/room/${room.uuid}`)}
               >
                 <TableCell>{room.name}</TableCell>
-                <TableCell>{room.users_uuid.length}</TableCell>
+                <TableCell>{room.users.length}</TableCell>
                 <TableCell>{room.created_at}</TableCell>
               </TableRow>
             ))}
