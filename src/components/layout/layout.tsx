@@ -10,6 +10,7 @@ import axios from 'axios';
 import { createContext } from 'react';
 import ErrorModal from '../modals/ErrorModal';
 import RouteErrorHandler from './RouteErrorHandler';
+import { useLocation } from 'react-router';
 
 type LayoutContextType = {
   openAuthenticationModal: () => void;
@@ -28,6 +29,7 @@ const Layout = () => {
   const [errorLoginRequest, setErrorLoginRequest] = useState<string>('');
   const [errorRegisterRequest, setErrorRegisterRequest] = useState<string>('');
   const username = useAuth((state) => state.user?.username);
+  const location = useLocation();
 
   const openAuthenticationModal = () => setOpenAuthModal(true);
   const openErrorApiModal = (errorMessage: string) => {
@@ -71,7 +73,7 @@ const Layout = () => {
             username={username}
           />
         </header>
-        <main>
+        <main className={location.pathname === '/' ? '' : 'mt-16'}>
           <Outlet />
           <RouteErrorHandler />
         </main>

@@ -4,7 +4,7 @@ import TableListRoom from '../components/TableListRoom';
 import { useRooms } from '../store/useRooms';
 import { useContext, useState } from 'react';
 import CreateRoomForm from '../components/forms/CreateRoomForm';
-import { createRoom } from '../api/services/rooms/getRoom';
+import { createRoom } from '../api/services/rooms/manage';
 import { CreateRoomData } from '../common/types/createRoom.form';
 import { useAuth } from '../store/useAuth';
 import { LayoutContext } from '../components/layout/layout';

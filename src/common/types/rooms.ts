@@ -10,3 +10,4 @@ type LightUserInfo = {
   username: string;
 };
 export default Room;
+export type { LightUserInfo };
